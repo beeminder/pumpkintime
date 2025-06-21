@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Doomstring / Pumpkintime / Teatime / Deadleinstein</title>
+<meta name="description" 
+      content="Deadlines to strings">
+<link id="favicon" 
+      rel="icon" 
+      href="https://glitch.com/edit/favicon-app.ico" 
+      type="image/x-icon">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<!-- DejaVu Sans can handle different widths of spaces well -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DejaVu+Sans&display=swap">
+<link rel="stylesheet" href="style.css">
+<script crossorigin defer
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js"></script>
+<script crossorigin defer
+src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.min.js"></script>
+<script crossorigin defer
+src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script crossorigin 
+src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin 
+src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin 
+src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<!-- src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+<!-- <script src="pumpkin.js" defer></script> -->
+<!-- <script src="hmsparsafore.js" defer></script> -->
+</head>  
+<body>
+
+<h1>Pumpkin Time</h1>
+<h2>How to display deadlines to users</h2>
+<div id="root">Loading...</div>
+<main>
+<!--
+<form autocomplete="off" id="tform">
+  <input id="tfield" tabindex="1" 
+         type="text" size="40" placeholder="5pm">
+</form>
+-->
+  
+<h3>Qual Suite</h3>
+  
+<table width="100%" style="white-space:nowrap;">
+<thead>
+<tr>
+<th><div title="Qual number, as-of date, deadline (timezone)">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  as-of AKA now &xrarr; deadline <font color="#999999">(TZ)</font></div></th>
+<th><div title="String to show user if they care about the delta">relative</div></th>
+<th><div title="String to show user if they care about the actual date / time of day (and explicit timezone if wanted, shown in gray)">absolute <font color="#999999">w/ TZ</font></div></th>
+</tr>
+</thead>
+<tbody id="ttable">
+</tbody>
+</table>
+
+<h3>New Qual Suite (if all of the above deviations are &#x1F44D;)</h3>
+<font color="#999999">
+<pre id="gsuite">
+</pre>
+</font>
+
+<div id="sanity"></div>
+</main>
+
+<h3>Testing different kinds of spaces</h3>
+<span class="redspace">&hairsp;</span> hair (hairsp, 8202, x200A)<br>
+<span class="redspace">&#8239;</span> narrow no-break (8239, x202F)<br>
+<span class="redspace">&thinsp;</span> thin (thinsp, 8201, x2009)<br>
+<span class="redspace">&#8198;</span> 6-per-em (8198, x2006)<br>
+<span class="redspace">&#8197;</span> 4-per-em (8197, x2005)<br>
+<span class="redspace">&#8287;</span> mathematical (8287, x205F)<br>
+<span class="redspace">&puncsp;</span> punctuation (puncsp, 8200, x2008)<br>
+<span class="redspace">&nbsp;</span> non-breaking (nbsp, 160, x00A0)<br>
+<span class="redspace">&#8196;</span> 3-per-em (8196, x2004)<br>
+<span class="redspace">&ensp;</span> en (ensp, 8194, x2002)<br>
+<span class="redspace">&#8199;</span> figure (numsp, 8199, x2007)<br>
+<span class="redspace">&emsp;</span> em (emsp, 8195, x2003)<br>
+
+<footer>
+<a href="https://glitch.com/#!/project/pumpkintime"
+   title="This is where the code for this lives">
+Made by Dreev and Bee of Beeminder
+</a>
+</footer>
+
+<script type="text/javascript" src="beetils.js"></script>
+<script type="text/javascript" src="dateio.js"></script>
+<script type="text/babel" data-presets="react, es2015, stage-2" 
+        src="main.jsx"></script>
+
+<script>
+// -----------------------------------------------------------------------------
+// Stick this Javascript at the bottom of your html; it will insert a warning at
+// the top of the page if it's loaded on an ancient browser that doesn't support
+// modern Javascript.
+function ancient_browser_check() {
+  "use strict"                         // not sure if using "use strict" matters
+  try { eval("let foo = (x)=>x+1") }   // feature detection: "let" & arrow funcs
+  catch (e) { return true }            // bad browser, not understanding ES6, or
+  return false                         // good browser, not being ancient; woot!
+}
+if (ancient_browser_check()) {
+  //document.body.insertAdjacentHTML('afterbegin', '<h1>' + blah blah + '</h1>')
+  // That works but the following version miiight be safer for ancient browsers:
+  var body = document.body;  // wavy flashback lines: "var" not "let" or "const"
+  var x = document.createElement("h1");
+  x.innerHTML = "Ancient browser warning: nothing's gonna work here!";
+  body.insertBefore(x, body.firstChild)          // ie, the very top of the page
+}
+// -----------------------------------------------------------------------------
+</script>
+</body>
+</html>
+
+<!-- ----------------------------------------------------------------------- -->
